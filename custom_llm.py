@@ -8,6 +8,11 @@ def summarize_questions(page_text: str, questions: list[str]):
 	Please summarize the questions asked by the students. If multiple questions are asked about the same topic, you can group them together. 
 	This overview should help the teacher prepare to answer the questions in the next lesson. Especially point out which topics where unclear or difficult for the students. Do not provide answers to the questions.
 
+	Your anser should be strucutred as follows:
+	- "Questions": A refined list of the students' questions. Combine similar questions into one.
+	- "Problems": A list of the topics that seemed to be unclear or difficult for the students.
+
+
 	The reading context is as follows:
 	<context>
 	{}
@@ -19,7 +24,7 @@ def summarize_questions(page_text: str, questions: list[str]):
 	for question in questions:
 		prompt += "\n- {}".format(question)
 
-	prompt += "\n\nPlease provide a short and concise summary of the main questions and topics raised by the students. Be short!"
+	prompt
 
 
 	response = ollama.chat(model='llama3.1:8b', messages=[

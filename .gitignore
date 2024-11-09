@@ -1,1 +1,3 @@
-unihack
+.env
+__pycache__
+set_supabase_vars.sh

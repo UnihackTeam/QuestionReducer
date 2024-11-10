@@ -29,9 +29,6 @@ def reduce(document_id):
         # store summarized questions
         database.write_summary_to_database(document_id, page, summary)
 
-        print("Page: ", page)
-        print("Summary: ", summary) 
-
     database.delete_temporary_pdf()
     return flask.jsonify(success=True)
 

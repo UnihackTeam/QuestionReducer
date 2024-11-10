@@ -10,7 +10,7 @@ database = DatabaseAccess(SUPABASE_URL, SUPABASE_KEY)
 
 app = flask.Flask(__name__)
 
-@app.route('/reduce/<int:document_id>')
+@app.route('/summarize/<int:document_id>')
 def reduce(document_id):
     database.clear()
     database.get_questions_by_pages(document_id)
@@ -37,4 +37,4 @@ def reduce(document_id):
 
 if __name__ == '__main__':
     app.run(debug=False)
-    # curl http://127.0.0.1:5000/reduce/1
+    # curl http://127.0.0.1:5000/summarize/1

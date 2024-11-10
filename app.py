@@ -16,6 +16,8 @@ def reduce(document_id):
     database.get_questions_by_pages(document_id)
     database.load_temporary_pdf(document_id)
 
+    print(database.questions_by_page)
+
     for page in database.questions_by_page:
         # get page text
         page_text = database.get_page_text(page)
@@ -34,4 +36,4 @@ def reduce(document_id):
 
 if __name__ == '__main__':
     app.run(debug=False)
-    # curl http://127.0.0.1:5000/summarize/1
+    # curl http://127.0.0.1:5000/summarize/2

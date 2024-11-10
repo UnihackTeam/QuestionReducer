@@ -38,13 +38,13 @@ class DatabaseAccess:
         self.reduced_questions = []
 
     def __get_questions_from_database(self, document_id: int):      
-        response = self.supabase.table("questions").select("*").execute()
+        response = self.supabase.table("questions").select("*").eq("doc", document_id).execute()
    
         if response.data == []:
             print("No questions found")
             return []
 
-        questions = [Question(row["id"], row["question"], row["doc"], row["page"]) for row in response.data]
+        questions = [Question(row["id"], row["question"], row["doc"], row["page"] - 1) for row in response.data]
         return questions
     
     def __group_questions_by_page(self, questions : List[Question]) -> dict:
@@ -89,6 +89,9 @@ class DatabaseAccess:
         self.questions_by_page = self.__group_questions_by_page(questions)
   
     def write_summary_to_database(self, document_id: int, page: int, summary: str):
+
+        page = page + 1
+
         # check if the page already has a summary
         response = self.supabase.table("pages").select("*").eq("doc_id", document_id).eq("page_number", page).execute()
         if response.data != []:
